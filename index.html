@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+    <Script>
+        <script>
+  // Initialize the agent at application startup.
+  // Some ad blockers or browsers will block Fingerprint CDN URL.
+  // To fix this, please use the NPM package instead.
+  const fpPromise = import('https://fpjscdn.net/v3/BOoTFzzI5jrk512UFj5P')
+    .then(FingerprintJS => FingerprintJS.load());
+
+  // Get the visitor identifier when you need it.
+  fpPromise
+    .then(fp => fp.get())
+    .then(result => console.log(result.visitorId));
+</script>
+
+    </Script>
 </head>
 <body>
     <header>
