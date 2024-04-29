@@ -18,25 +18,16 @@
     </footer>
     <!-- Place the script just before the closing </body> tag -->
     <script>
-        // Wait a couple of seconds before a result appears
-
         // Initialize the agent at application startup.
-        // Get a public API key at https://dashboard.fingerprintjs.com
+        // Some ad blockers or browsers will block Fingerprint CDN URL.
+        // To fix this, please use the NPM package instead.
         const fpPromise = import('https://fpjscdn.net/v3/BOoTFzzI5jrk512UFj5P')
-            .then(FingerprintJS => FingerprintJS.load({
-                // region: 'eu',
-                // endpoint: 'https://fp.your.com',
-            }));
+            .then(FingerprintJS => FingerprintJS.load());
 
         // Get the visitor identifier when you need it.
         fpPromise
-            .then(fp => fp.get(
-                /* { linkedId: 'your-linked-id', tag: { yourTag: 123456 } } */
-            ))
-            .then(result => {
-                const visitorId = result.visitorId;
-                console.log('Your visitorId:', visitorId);
-            })
+            .then(fp => fp.get())
+            .then(result => console.log(result.visitorId))
             .catch(error => console.error(error));
     </script>
 </body>
